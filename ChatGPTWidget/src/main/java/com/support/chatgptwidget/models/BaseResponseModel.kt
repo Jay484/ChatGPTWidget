@@ -1,4 +1,4 @@
-package com.support.chatgptwidget.network
+package com.support.chatgptwidget.models
 
 import com.google.gson.annotations.SerializedName
 

@@ -3,12 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.selectmodelfragment.SelectModelFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.selectmodel.SelectModelFragment"
     android:background="#75E6E2">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_ai_models"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        tools:itemCount="5"
+        tools:listitem="@layout/item_models_layout"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        />
 
 </FrameLayout>

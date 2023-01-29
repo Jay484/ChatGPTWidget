@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 const val baseUrl = "https://api.openai.com/v1/"
-const val API_TOKEN = "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"
+const val API_TOKEN = "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"
 
 val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
     setLevel(HttpLoggingInterceptor.Level.BODY)
