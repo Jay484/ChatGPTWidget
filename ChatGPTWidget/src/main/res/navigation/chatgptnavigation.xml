@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/chatgptnavigation"
-    app:startDestination="@id/selectModelFragment">
+    app:startDestination="@id/listModelsFragment">
 
     <fragment
-        android:id="@+id/selectModelFragment"
-        android:name="com.support.chatgptwidget.ui.selectmodel.SelectModelFragment"
+        android:id="@+id/listModelsFragment"
+        android:name="com.support.chatgptwidget.ui.listmodels.ListModelsFragment"
         android:label="fragment_select_model"
-        tools:layout="@layout/fragment_select_model" />
+        tools:layout="@layout/fragment_list_models" />
 </navigation>

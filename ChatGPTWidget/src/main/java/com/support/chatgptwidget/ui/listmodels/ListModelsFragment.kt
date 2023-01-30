@@ -1,4 +1,4 @@
-package com.support.chatgptwidget.ui.selectmodel
+package com.support.chatgptwidget.ui.listmodels
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,20 +12,20 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class SelectModelFragment : Fragment() {
+class ListModelsFragment : Fragment() {
     private lateinit var modelRecyclerView: RecyclerView
     private lateinit var modelsRecyclerViewAdapter: AIModelsRecyclerViewAdapter
     companion object {
-        fun newInstance() = SelectModelFragment()
+        fun newInstance() = ListModelsFragment()
     }
 
-    private val viewModel: SelectModelViewModel by viewModels()
+    private val viewModel: ListModelsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_select_model, container, false)
+        return inflater.inflate(R.layout.fragment_list_models, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.selectmodel.SelectModelFragment"
+    tools:context=".ui.listmodels.ListModelsFragment"
     android:background="#75E6E2">
 
     <androidx.recyclerview.widget.RecyclerView

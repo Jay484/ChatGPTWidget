@@ -1,4 +1,4 @@
-package com.support.chatgptwidget.ui.selectmodel
+package com.support.chatgptwidget.ui.listmodels
 
 import android.view.LayoutInflater
 import android.view.View
