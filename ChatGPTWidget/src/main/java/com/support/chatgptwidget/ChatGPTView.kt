@@ -2,6 +2,7 @@ package com.support.chatgptwidget
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import androidx.constraintlayout.widget.ConstraintLayout
 
 class ChatGPTView @JvmOverloads constructor(
@@ -13,9 +14,5 @@ class ChatGPTView @JvmOverloads constructor(
 
     init {
         inflate(context, R.layout.chat_gpt_view_layout,this)
-    }
-
-    fun test(){
-
     }
 }
