@@ -1,8 +1,8 @@
 package com.support.chatgptwidget.repository
 
-import com.support.chatgptwidget.models.ChatAIModel
+import com.support.chatgptwidget.ui.listmodels.ListModelViewEvent
 import kotlinx.coroutines.flow.Flow
 
 interface AIModelRepository {
-    fun getAIModels(): Flow<List<ChatAIModel>>
+    fun getAIModels(): Flow<ListModelViewEvent>
 }

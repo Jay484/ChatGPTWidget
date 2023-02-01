@@ -8,13 +8,17 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.support.chatgptwidget.R
+import com.support.chatgptwidget.databinding.FragmentListModelsBinding
+import com.support.chatgptwidget.models.ChatAIModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ListModelsFragment : Fragment() {
     private lateinit var modelRecyclerView: RecyclerView
     private lateinit var modelsRecyclerViewAdapter: AIModelsRecyclerViewAdapter
+    private lateinit var binding: FragmentListModelsBinding
     companion object {
         fun newInstance() = ListModelsFragment()
     }
@@ -22,26 +26,53 @@ class ListModelsFragment : Fragment() {
     private val viewModel: ListModelsViewModel by viewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_list_models, container, false)
+        binding = FragmentListModelsBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        modelRecyclerView = view.findViewById(R.id.rv_ai_models)
+        initViews()
+        observeFlows()
+        viewModel.getChatAIModelList()
+    }
+
+    private fun initViews(){
+        modelRecyclerView = binding.rvAiModels
         modelsRecyclerViewAdapter = AIModelsRecyclerViewAdapter()
         modelRecyclerView.adapter = modelsRecyclerViewAdapter
-        viewModel.getChatAIModelList()
-        viewModel.modelList.observe(viewLifecycleOwner) {
-            it?.let {models->
-                modelsRecyclerViewAdapter.models = models
-                CoroutineScope(Dispatchers.Main).launch {
-                    modelsRecyclerViewAdapter.notifyDataSetChanged()
+    }
+    private fun observeFlows(){
+        CoroutineScope(Dispatchers.Default).launch {
+            viewModel.listModelViewEffect.collect {
+                when (it) {
+                    is ListModelViewEffect.LoadModels -> {
+                        withContext(Dispatchers.Main) {
+                            hideLoading()
+                            showModelsList(it.chatAIModels)
+                        }
+                    }
+                    ListModelViewEffect.ShowListLoading -> showLoading()
                 }
             }
         }
+    }
+
+    private fun showLoading(){
+        binding.pbScreen.visibility = View.VISIBLE
+    }
+
+    private fun hideLoading(){
+        binding.pbScreen.visibility = View.GONE
+    }
+
+    private fun showModelsList(modelList: List<ChatAIModel>){
+        modelsRecyclerViewAdapter.models = modelList
+        modelsRecyclerViewAdapter.notifyItemRangeInserted(0,modelList.size)
     }
 
 }
