@@ -9,5 +9,26 @@
         android:id="@+id/listModelsFragment"
         android:name="com.support.chatgptwidget.ui.listmodels.ListModelsFragment"
         android:label="fragment_select_model"
-        tools:layout="@layout/fragment_list_models" />
+        tools:layout="@layout/fragment_list_models" >
+        <action
+            android:id="@+id/action_listModelsFragment_to_textAiChatFragment2"
+            app:destination="@id/textAiChatFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/textAiChatFragment"
+        android:name="com.support.chatgptwidget.ui.TextAIChat.TextAiChatFragment"
+        android:label="fragment_text_ai_chat"
+        tools:layout="@layout/fragment_text_ai_chat" >
+        <action
+            android:id="@+id/action_textAiChatFragment_to_listModelsFragment"
+            app:destination="@id/listModelsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
 </navigation>

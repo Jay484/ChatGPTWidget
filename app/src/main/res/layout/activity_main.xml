@@ -6,8 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.support.chatgptwidget.ChatGPTView
+    <EditText
+        android:id="@+id/et_api"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_your_api_key"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginHorizontal="5dp"
+        />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_open_ai_chat"
+        app:layout_constraintTop_toBottomOf="@id/et_api"
+        app:layout_constraintStart_toStartOf="@id/et_api"
+        app:layout_constraintEnd_toEndOf="@id/et_api"
+        android:layout_marginTop="5dp"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
