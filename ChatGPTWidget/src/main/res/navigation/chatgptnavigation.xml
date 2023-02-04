@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/textAiChatFragment"
-        android:name="com.support.chatgptwidget.ui.TextAIChat.TextAiChatFragment"
+        android:name="com.support.chatgptwidget.ui.textAIChat.TextAiChatFragment"
         android:label="fragment_text_ai_chat"
         tools:layout="@layout/fragment_text_ai_chat" >
         <action

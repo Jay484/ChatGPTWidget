@@ -1,4 +1,4 @@
-package com.support.chatgptwidget.ui.TextAIChat
+package com.support.chatgptwidget.ui.textAIChat
 
 import androidx.lifecycle.ViewModel
 

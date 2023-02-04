@@ -1,29 +1,27 @@
-package com.support.chatgptwidget.ui.TextAIChat
+package com.support.chatgptwidget.ui.textAIChat
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
-import com.support.chatgptwidget.R
-import com.support.chatgptwidget.ui.listmodels.ListModelsFragmentDirections
+import com.support.chatgptwidget.baseclasses.GPTFragment
+import com.support.chatgptwidget.databinding.FragmentChatBinding
 
-class TextAiChatFragment : Fragment() {
-
+class TextAiChatFragment : GPTFragment<FragmentChatBinding, TextAiChatViewModel>() {
     companion object {
         fun newInstance() = TextAiChatFragment()
     }
 
-    private lateinit var viewModel: TextAiChatViewModel
+    override fun initViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentChatBinding {
+        return FragmentChatBinding.inflate(inflater, container, false)
+    }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_text_ai_chat, container, false)
+    override fun initViewModel(): TextAiChatViewModel {
+        return TextAiChatViewModel()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
