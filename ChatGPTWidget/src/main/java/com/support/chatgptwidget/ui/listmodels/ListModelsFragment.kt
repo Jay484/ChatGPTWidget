@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.support.chatgptwidget.AIChatActivity
 import com.support.chatgptwidget.databinding.FragmentListModelsBinding
-import com.support.chatgptwidget.models.ChatAIModel
+import com.support.chatgptwidget.network.models.responsemodels.ChatAIModel
 import com.support.chatgptwidget.ui.listmodels.listeners.ModelItemListeners
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -32,7 +32,7 @@ class ListModelsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewModel.API_TOKEN = (requireActivity() as AIChatActivity).apiKey
+        viewModel.apiToken = (requireActivity() as AIChatActivity).apiKey
         binding = FragmentListModelsBinding.inflate(inflater,container,false)
         return binding.root
     }

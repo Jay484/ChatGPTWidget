@@ -1,6 +1,6 @@
 package com.support.chatgptwidget.ui.listmodels
 
-import com.support.chatgptwidget.models.ChatAIModel
+import com.support.chatgptwidget.network.models.responsemodels.ChatAIModel
 
 data class ListModelsViewState(
         var chatAIModels: List<ChatAIModel> = listOf()

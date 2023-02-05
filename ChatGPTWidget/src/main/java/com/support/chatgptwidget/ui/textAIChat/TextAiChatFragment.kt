@@ -3,12 +3,16 @@ package com.support.chatgptwidget.ui.textAIChat
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
 import com.support.chatgptwidget.baseclasses.GPTFragment
-import com.support.chatgptwidget.databinding.FragmentChatBinding
+import com.support.chatgptwidget.databinding.FragmentTextAiChatBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class TextAiChatFragment : GPTFragment<FragmentChatBinding, TextAiChatViewModel>() {
+class TextAiChatFragment : GPTFragment<FragmentTextAiChatBinding, TextAiChatViewModel>() {
     companion object {
         fun newInstance() = TextAiChatFragment()
     }
@@ -16,8 +20,8 @@ class TextAiChatFragment : GPTFragment<FragmentChatBinding, TextAiChatViewModel>
     override fun initViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ): FragmentChatBinding {
-        return FragmentChatBinding.inflate(inflater, container, false)
+    ): FragmentTextAiChatBinding {
+        return FragmentTextAiChatBinding.inflate(inflater, container, false)
     }
 
     override fun initViewModel(): TextAiChatViewModel {
@@ -30,6 +34,27 @@ class TextAiChatFragment : GPTFragment<FragmentChatBinding, TextAiChatViewModel>
             val action = TextAiChatFragmentDirections
                 .actionTextAiChatFragmentToListModelsFragment()
             findNavController().navigate(action)
+        }
+    }
+
+    override fun initListeners(){
+        binding.btnSend.setOnClickListener {
+            viewModel.completeText(binding.etConversation.text.toString())
+        }
+    }
+
+    override fun effectObservers() {
+        CoroutineScope(Dispatchers.Default).launch {
+            viewModel.viewEffect.collect {
+                when(it){
+                    is TextAiChatViewEffect.LoadText -> {
+                        binding.etConversation.setText(it.text)
+                    }
+                    TextAiChatViewEffect.ViewModelInitialized -> {
+
+                    }
+                }
+            }
         }
     }
 

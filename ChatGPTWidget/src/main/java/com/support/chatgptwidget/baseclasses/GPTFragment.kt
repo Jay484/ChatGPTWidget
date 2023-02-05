@@ -19,8 +19,12 @@ abstract class GPTFragment<T : ViewBinding, V: ViewModel> : Fragment() {
     ): View? {
         binding = initViewBinding(inflater, container)
         viewModel = initViewModel()
+        initListeners()
+        effectObservers()
         return  binding.root
     }
     abstract fun initViewBinding(inflater: LayoutInflater, container: ViewGroup?):T
     abstract fun initViewModel():V
+    abstract fun initListeners()
+    abstract fun effectObservers()
 }
