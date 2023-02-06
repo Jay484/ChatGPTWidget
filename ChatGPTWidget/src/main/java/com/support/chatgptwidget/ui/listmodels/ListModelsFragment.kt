@@ -8,9 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.support.chatgptwidget.R
+import com.support.chatgptwidget.AIChatActivity
 import com.support.chatgptwidget.databinding.FragmentListModelsBinding
-import com.support.chatgptwidget.models.ChatAIModel
+import com.support.chatgptwidget.network.models.responsemodels.ChatAIModel
 import com.support.chatgptwidget.ui.listmodels.listeners.ModelItemListeners
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -31,7 +31,8 @@ class ListModelsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+        viewModel.apiToken = (requireActivity() as AIChatActivity).apiKey
         binding = FragmentListModelsBinding.inflate(inflater,container,false)
         return binding.root
     }

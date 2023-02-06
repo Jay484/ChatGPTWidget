@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.support.chatgptwidget.R
-import com.support.chatgptwidget.models.ChatAIModel
+import com.support.chatgptwidget.network.models.responsemodels.ChatAIModel
 import com.support.chatgptwidget.ui.listmodels.listeners.ModelItemListeners
 
 class AIModelsRecyclerViewAdapter : RecyclerView.Adapter<AIModelsRecyclerViewAdapter.AIModelViewHolder>(){

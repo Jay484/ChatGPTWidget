@@ -23,5 +23,6 @@
         app:layout_constraintStart_toStartOf="@id/et_api"
         app:layout_constraintEnd_toEndOf="@id/et_api"
         android:layout_marginTop="5dp"
+        android:text="Start AI ChatBot"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
