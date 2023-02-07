@@ -8,11 +8,16 @@ import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
 import com.support.chatgptwidget.baseclasses.GPTFragment
 import com.support.chatgptwidget.databinding.FragmentTextAiChatBinding
+import com.support.chatgptwidget.models.AIChatMessage
+import com.support.chatgptwidget.ui.textAIChat.recyclerview.TextAIChatRecyclerAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class TextAiChatFragment : GPTFragment<FragmentTextAiChatBinding, TextAiChatViewModel>() {
+
+    private lateinit var textAIChatRecyclerAdapter: TextAIChatRecyclerAdapter
+
     companion object {
         fun newInstance() = TextAiChatFragment()
     }
@@ -56,6 +61,16 @@ class TextAiChatFragment : GPTFragment<FragmentTextAiChatBinding, TextAiChatView
                 }
             }
         }
+    }
+
+    override fun initViews() {
+        textAIChatRecyclerAdapter = TextAIChatRecyclerAdapter()
+        val data = listOf(
+            AIChatMessage("bot", "How may I help you"),
+            AIChatMessage("me","What is the temperature outside")
+        )
+        binding.rvChats.adapter = textAIChatRecyclerAdapter
+        textAIChatRecyclerAdapter.data = data
     }
 
 }
