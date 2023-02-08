@@ -9,35 +9,39 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.support.chatgptwidget.R
 import com.support.chatgptwidget.models.AIChatMessage
 
-class TextAIChatRecyclerAdapter : RecyclerView.Adapter<TextAIChatViewHolder>() {
+class TextAIChatRecyclerAdapter : RecyclerView.Adapter<TextAIChatSendViewHolder>() {
     var data = listOf<AIChatMessage>()
         set(value){
             field = value
             notifyDataSetChanged()
         }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TextAIChatViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TextAIChatSendViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.item_chat_sent, parent, false)
-        return TextAIChatViewHolder(view)
+        val view =
+            if(viewType == 0)
+                layoutInflater.inflate(R.layout.item_chat_sent, parent, false)
+            else
+                layoutInflater.inflate(R.layout.item_chat_received, parent, false)
+        return TextAIChatSendViewHolder(view)
     }
 
     override fun getItemCount(): Int = data.size
 
-    override fun onBindViewHolder(holder: TextAIChatViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TextAIChatSendViewHolder, position: Int) {
         val aiChatMessage = data[position]
         holder.bind(aiChatMessage)
     }
 
-    private fun bind(holder: TextAIChatViewHolder, aiChatMessage: AIChatMessage){
+    private fun bind(holder: TextAIChatSendViewHolder, aiChatMessage: AIChatMessage){
 
     }
 
     override fun getItemViewType(position: Int): Int {
-        return super.getItemViewType(position)
+        return if(data[position].sender == "me") 0 else 1
     }
 }
 
-class TextAIChatViewHolder(val view: View): ViewHolder(view){
+class TextAIChatSendViewHolder(val view: View): ViewHolder(view){
 }
 
 fun ViewHolder.bind(aiChatMessage: AIChatMessage){
