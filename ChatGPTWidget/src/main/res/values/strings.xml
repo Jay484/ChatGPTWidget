@@ -1,1 +1,4 @@
-<resources></resources>
+<resources>
+    <string name="type">Type...</string>
+    <string name="send">Send</string>
+</resources>
