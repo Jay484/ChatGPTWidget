@@ -3,7 +3,6 @@ package com.support.chatgptwidget.ui.textAIChat
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
 import com.support.chatgptwidget.baseclasses.GPTFragment
@@ -49,11 +48,11 @@ class TextAiChatFragment : GPTFragment<FragmentTextAiChatBinding, TextAiChatView
     }
 
     override fun effectObservers() {
-        CoroutineScope(Dispatchers.Default).launch {
+        CoroutineScope(Dispatchers.Main).launch {
             viewModel.viewEffect.collect {
                 when(it){
                     is TextAiChatViewEffect.LoadText -> {
-                        binding.etConversation.setText(it.text)
+
                     }
                     TextAiChatViewEffect.ViewModelInitialized -> {
 
