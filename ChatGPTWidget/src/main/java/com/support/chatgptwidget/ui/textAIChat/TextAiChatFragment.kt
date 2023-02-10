@@ -43,7 +43,7 @@ class TextAiChatFragment : GPTFragment<FragmentTextAiChatBinding, TextAiChatView
 
     override fun initListeners(){
         binding.btnSend.setOnClickListener {
-            viewModel.completeText(binding.etConversation.text.toString())
+            sendMessage(binding.etConversation.text.toString() + "~")
         }
     }
 
@@ -51,8 +51,9 @@ class TextAiChatFragment : GPTFragment<FragmentTextAiChatBinding, TextAiChatView
         CoroutineScope(Dispatchers.Main).launch {
             viewModel.viewEffect.collect {
                 when(it){
-                    is TextAiChatViewEffect.LoadText -> {
-
+                    is TextAiChatViewEffect.LoadMessage -> {
+                        textAIChatRecyclerAdapter
+                            .notifyItemInserted(viewModel.data.size-1)
                     }
                     TextAiChatViewEffect.ViewModelInitialized -> {
 
@@ -64,12 +65,13 @@ class TextAiChatFragment : GPTFragment<FragmentTextAiChatBinding, TextAiChatView
 
     override fun initViews() {
         textAIChatRecyclerAdapter = TextAIChatRecyclerAdapter()
-        val data = listOf(
-            AIChatMessage("bot", "How may I help you"),
-            AIChatMessage("me","What is the temperature outside")
-        )
         binding.rvChats.adapter = textAIChatRecyclerAdapter
-        textAIChatRecyclerAdapter.data = data
+        textAIChatRecyclerAdapter.data = viewModel.data
+    }
+
+    private fun sendMessage(text: String){
+        viewModel.completeText("$text~")
+        textAIChatRecyclerAdapter.notifyItemInserted(viewModel.data.size-1)
     }
 
 }

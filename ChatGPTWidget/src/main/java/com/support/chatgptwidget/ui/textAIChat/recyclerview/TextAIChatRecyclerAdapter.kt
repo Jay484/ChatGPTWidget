@@ -8,9 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.support.chatgptwidget.R
 import com.support.chatgptwidget.models.AIChatMessage
+import com.support.chatgptwidget.models.Sender
 
 class TextAIChatRecyclerAdapter : RecyclerView.Adapter<TextAICHatViewHolder>() {
-    var data = listOf<AIChatMessage>()
+    var data = arrayListOf<AIChatMessage>()
         set(value){
             field = value
             notifyDataSetChanged()
@@ -54,7 +55,7 @@ class TextAIChatRecyclerAdapter : RecyclerView.Adapter<TextAICHatViewHolder>() {
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if(data[position].sender == "me") 0 else 1
+        return data[position].sender.type
     }
 }
 
