@@ -2,6 +2,8 @@ package com.support.chatgptwidget.ui.textAIChat
 
 import androidx.lifecycle.ViewModel
 import com.support.chatgptwidget.data.AIModelRepositoryImpl
+import com.support.chatgptwidget.models.AIChatMessage
+import com.support.chatgptwidget.models.Sender
 import com.support.chatgptwidget.network.APIService
 import com.support.chatgptwidget.network.models.requestmodels.TextCompletionRequest
 import com.support.chatgptwidget.ui.textAIChat.TextAiChatViewEffect.ViewModelInitialized
@@ -15,7 +17,12 @@ class TextAiChatViewModel : ViewModel() {
     var viewState: TextAiChatViewState = TextAiChatViewState()
     var viewEffect: MutableStateFlow<TextAiChatViewEffect> = MutableStateFlow(ViewModelInitialized)
     var apiToken: String? = null
+    val data = arrayListOf(
+        AIChatMessage(Sender.Bot, "How may I help you"),
+        AIChatMessage(Sender.Me,"What is the temperature outside")
+    )
     fun completeText(text: String){
+        data.add(AIChatMessage(Sender.Me,text))
         CoroutineScope(Dispatchers.IO).launch {
             AIModelRepositoryImpl(
                 APIService.getChatGPTApiService(apiToken)
@@ -35,7 +42,11 @@ class TextAiChatViewModel : ViewModel() {
 
             }
             is TextAiChatViewEvent.TextCompleted ->{
-                viewEffect.emit(TextAiChatViewEffect.LoadText(event.choices[0].text))
+                val message = AIChatMessage(Sender.Bot, event.choices[0].text)
+                data.add(message)
+                viewEffect.emit(
+                    TextAiChatViewEffect.LoadMessage(message)
+                )
             }
         }
     }
