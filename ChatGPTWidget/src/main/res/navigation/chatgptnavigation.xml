@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/chatgptnavigation"
-    app:startDestination="@id/listModelsFragment">
+    app:startDestination="@id/categoryFragment">
 
     <fragment
         android:id="@+id/listModelsFragment"
@@ -30,5 +30,14 @@
         <argument
             android:name="id"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.support.chatgptwidget.ui.category.CategoryFragment"
+        android:label="fragment_category"
+        tools:layout="@layout/fragment_category" >
+        <action
+            android:id="@+id/action_categoryFragment_to_textAiChatFragment"
+            app:destination="@id/textAiChatFragment" />
     </fragment>
 </navigation>

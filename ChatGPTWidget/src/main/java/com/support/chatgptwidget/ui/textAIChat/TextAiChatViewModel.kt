@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class TextAiChatViewModel : ViewModel() {
-    var viewState: TextAiChatViewState = TextAiChatViewState()
     var viewEffect: MutableStateFlow<TextAiChatViewEffect> = MutableStateFlow(ViewModelInitialized)
     var apiToken: String? = null
     val data = arrayListOf(
@@ -29,7 +28,7 @@ class TextAiChatViewModel : ViewModel() {
             ).completeText(TextCompletionRequest(
                 "text-davinci-003",
                 text,
-                30
+                1024
             )).collectLatest {
                 processEvent(it)
             }
