@@ -7,5 +7,6 @@ data class TextCompletionRequest(
     @SerializedName("prompt")
     val text: String,
     @SerializedName("max_tokens")
+    @androidx.annotation.IntRange(0,4096)
     val maxWordsCount: Int
 )
