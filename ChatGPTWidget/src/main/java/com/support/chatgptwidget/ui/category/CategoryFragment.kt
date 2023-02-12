@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.support.chatgptwidget.databinding.FragmentCategoryBinding
 
 class CategoryFragment : Fragment() {
@@ -20,7 +21,9 @@ class CategoryFragment : Fragment() {
     }
     private fun initOnclickListeners(){
         binding.btnTextCompletion.setOnClickListener {
-
+            val action = CategoryFragmentDirections
+                .actionCategoryFragmentToTextAiChatFragment(text_davinci_003_model)
+            findNavController().navigate(action)
         }
         binding.btnCodeCompletion.setOnClickListener {
 
@@ -30,5 +33,8 @@ class CategoryFragment : Fragment() {
         }
     }
 
+    companion object{
+        const val text_davinci_003_model = "text-davinci-003"
+    }
 
 }

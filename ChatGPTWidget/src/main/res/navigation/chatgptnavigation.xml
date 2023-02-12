@@ -9,27 +9,21 @@
         android:id="@+id/listModelsFragment"
         android:name="com.support.chatgptwidget.ui.listmodels.ListModelsFragment"
         android:label="fragment_select_model"
-        tools:layout="@layout/fragment_list_models" >
-        <action
-            android:id="@+id/action_listModelsFragment_to_textAiChatFragment2"
-            app:destination="@id/textAiChatFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popUpToInclusive="false" />
-    </fragment>
+        tools:layout="@layout/fragment_list_models" />
     <fragment
         android:id="@+id/textAiChatFragment"
         android:name="com.support.chatgptwidget.ui.textAIChat.TextAiChatFragment"
         android:label="fragment_text_ai_chat"
         tools:layout="@layout/fragment_text_ai_chat" >
-        <action
-            android:id="@+id/action_textAiChatFragment_to_listModelsFragment"
-            app:destination="@id/listModelsFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right" />
         <argument
-            android:name="id"
+            android:name="model"
             app:argType="string" />
+        <action
+            android:id="@+id/action_textAiChatFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/categoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoryFragment"
@@ -38,6 +32,8 @@
         tools:layout="@layout/fragment_category" >
         <action
             android:id="@+id/action_categoryFragment_to_textAiChatFragment"
-            app:destination="@id/textAiChatFragment" />
+            app:destination="@id/textAiChatFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
 </navigation>
