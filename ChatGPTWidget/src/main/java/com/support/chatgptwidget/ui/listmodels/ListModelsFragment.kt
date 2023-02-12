@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.support.chatgptwidget.AIChatActivity
 import com.support.chatgptwidget.databinding.FragmentListModelsBinding
@@ -21,9 +20,6 @@ class ListModelsFragment : Fragment() {
     private lateinit var modelRecyclerView: RecyclerView
     private lateinit var modelsRecyclerViewAdapter: AIModelsRecyclerViewAdapter
     private lateinit var binding: FragmentListModelsBinding
-    companion object {
-        fun newInstance() = ListModelsFragment()
-    }
 
     private val viewModel: ListModelsViewModel by viewModels()
 
@@ -49,9 +45,6 @@ class ListModelsFragment : Fragment() {
         modelsRecyclerViewAdapter = AIModelsRecyclerViewAdapter().apply {
             modelItemListeners = object : ModelItemListeners{
                 override fun onClickModel(id: String) {
-                    val action = ListModelsFragmentDirections
-                        .actionListModelsFragmentToTextAiChatFragment2(id)
-                    findNavController().navigate(action)
                 }
             }
         }

@@ -2,9 +2,12 @@ package com.support.chatgptwidget.ui.textAIChat
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.support.chatgptwidget.AIChatActivity
 import com.support.chatgptwidget.baseclasses.GPTFragment
 import com.support.chatgptwidget.databinding.FragmentTextAiChatBinding
 import com.support.chatgptwidget.ui.textAIChat.recyclerview.TextAIChatRecyclerAdapter
@@ -15,6 +18,7 @@ import kotlinx.coroutines.launch
 class TextAiChatFragment : GPTFragment<FragmentTextAiChatBinding, TextAiChatViewModel>() {
 
     private lateinit var textAIChatRecyclerAdapter: TextAIChatRecyclerAdapter
+    private val args: TextAiChatFragmentArgs by navArgs()
 
     override fun initViewBinding(
         inflater: LayoutInflater,
@@ -31,14 +35,20 @@ class TextAiChatFragment : GPTFragment<FragmentTextAiChatBinding, TextAiChatView
         super.onCreate(savedInstanceState)
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             val action = TextAiChatFragmentDirections
-                .actionTextAiChatFragmentToListModelsFragment()
+                .actionTextAiChatFragmentToCategoryFragment()
             findNavController().navigate(action)
         }
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.model = args.model
+        viewModel.apiToken = (requireActivity() as AIChatActivity).apiKey
+    }
+
     override fun initListeners(){
         binding.btnSend.setOnClickListener {
-            sendMessage(binding.etConversation.text.toString() + "~")
+            sendMessage(binding.etConversation.text.toString())
         }
     }
 
@@ -65,7 +75,8 @@ class TextAiChatFragment : GPTFragment<FragmentTextAiChatBinding, TextAiChatView
     }
 
     private fun sendMessage(text: String){
-        viewModel.completeText("$text~")
+        viewModel.completeText(text)
+        binding.etConversation.text = null
         textAIChatRecyclerAdapter.notifyItemInserted(viewModel.data.size-1)
     }
 

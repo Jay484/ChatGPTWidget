@@ -16,9 +16,9 @@ import kotlinx.coroutines.launch
 class TextAiChatViewModel : ViewModel() {
     var viewEffect: MutableStateFlow<TextAiChatViewEffect> = MutableStateFlow(ViewModelInitialized)
     var apiToken: String? = null
+    var model = "text-davinci-003"
     val data = arrayListOf(
         AIChatMessage(Sender.Bot, "How may I help you"),
-        AIChatMessage(Sender.Me,"What is the temperature outside")
     )
     fun completeText(text: String){
         data.add(AIChatMessage(Sender.Me,text))
@@ -26,7 +26,7 @@ class TextAiChatViewModel : ViewModel() {
             AIModelRepositoryImpl(
                 APIService.getChatGPTApiService(apiToken)
             ).completeText(TextCompletionRequest(
-                "text-davinci-003",
+                model,
                 text,
                 1024
             )).collectLatest {
@@ -41,7 +41,7 @@ class TextAiChatViewModel : ViewModel() {
 
             }
             is TextAiChatViewEvent.TextCompleted ->{
-                val message = AIChatMessage(Sender.Bot, event.choices[0].text)
+                val message = AIChatMessage(Sender.Bot, event.choices[0].text.trim())
                 data.add(message)
                 viewEffect.emit(
                     TextAiChatViewEffect.LoadMessage(message)
