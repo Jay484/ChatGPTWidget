@@ -5,4 +5,5 @@
     <string name="text_completion">Text Completion</string>
     <string name="code_completion">Code Completion</string>
     <string name="generate_images">Generate Images</string>
+    <string name="ask_bot">Ask bot</string>
 </resources>

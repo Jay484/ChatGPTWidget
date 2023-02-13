@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
+import androidx.core.widget.doOnTextChanged
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.support.chatgptwidget.AIChatActivity
@@ -49,6 +50,14 @@ class TextAiChatFragment : GPTFragment<FragmentTextAiChatBinding, TextAiChatView
     override fun initListeners(){
         binding.btnSend.setOnClickListener {
             sendMessage(binding.etConversation.text.toString())
+        }
+        binding.etConversation.doOnTextChanged { text, _, _, _ ->
+            if(text != null){
+                binding.btnSend.visibility = if (text.isEmpty())
+                    View.GONE
+                else
+                    View.VISIBLE
+            }
         }
     }
 
