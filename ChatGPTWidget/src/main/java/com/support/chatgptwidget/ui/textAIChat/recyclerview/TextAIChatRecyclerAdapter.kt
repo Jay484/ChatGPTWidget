@@ -47,13 +47,13 @@ class TextAIChatRecyclerAdapter : RecyclerView.Adapter<TextAICHatViewHolder>() {
 }
 
 sealed class TextAICHatViewHolder(view: View):ViewHolder(view){
-    class Sent(private val binding: ItemChatSentBinding): TextAICHatViewHolder(binding.root){
+    class Sent(private val binding: ItemChatSentBinding):TextAICHatViewHolder(binding.root){
         fun bind(aiChatMessage: AIChatMessage){
             binding.tvSentMessage.text = aiChatMessage.text
         }
     }
 
-    class Received(private val binding: ItemChatReceivedBinding): TextAICHatViewHolder(binding.root){
+    class Received(private val binding: ItemChatReceivedBinding):TextAICHatViewHolder(binding.root){
         fun bind(aiChatMessage: AIChatMessage){
             binding.tvReceivedMessage.text = aiChatMessage.text
         }
