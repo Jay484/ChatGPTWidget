@@ -52,12 +52,7 @@ class TextAiChatFragment : GPTFragment<FragmentTextAiChatBinding, TextAiChatView
             sendMessage(binding.etConversation.text.toString())
         }
         binding.etConversation.doOnTextChanged { text, _, _, _ ->
-            if(text != null){
-                binding.btnSend.visibility = if (text.isEmpty())
-                    View.GONE
-                else
-                    View.VISIBLE
-            }
+                binding.btnSend.isEnabled = !text.isNullOrEmpty()
         }
     }
 
@@ -66,8 +61,7 @@ class TextAiChatFragment : GPTFragment<FragmentTextAiChatBinding, TextAiChatView
             viewModel.viewEffect.collect {
                 when(it){
                     is TextAiChatViewEffect.LoadMessage -> {
-                        textAIChatRecyclerAdapter
-                            .notifyItemInserted(viewModel.data.size-1)
+                        recyclerViewNewItemAdded()
                     }
                     TextAiChatViewEffect.ViewModelInitialized -> {
 
@@ -81,12 +75,19 @@ class TextAiChatFragment : GPTFragment<FragmentTextAiChatBinding, TextAiChatView
         textAIChatRecyclerAdapter = TextAIChatRecyclerAdapter()
         binding.rvChats.adapter = textAIChatRecyclerAdapter
         textAIChatRecyclerAdapter.data = viewModel.data
+        binding.btnSend.isEnabled = false
     }
 
     private fun sendMessage(text: String){
         viewModel.completeText(text)
         binding.etConversation.text = null
-        textAIChatRecyclerAdapter.notifyItemInserted(viewModel.data.size-1)
+        recyclerViewNewItemAdded()
+    }
+
+    private fun recyclerViewNewItemAdded(){
+        val position = viewModel.data.size-1
+        textAIChatRecyclerAdapter.notifyItemInserted(position)
+        binding.rvChats.smoothScrollToPosition(position)
     }
 
 }

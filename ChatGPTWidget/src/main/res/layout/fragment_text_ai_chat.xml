@@ -2,30 +2,37 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Theme.ChatGPTWidget.Container.Dark"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="10dp"
     tools:context=".ui.textAIChat.TextAiChatFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_chats"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#FDDBDB"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/et_conversation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:itemCount="20"
+        tools:itemCount="5"
         tools:listitem="@layout/item_chat_sent" />
 
     <EditText
         android:id="@+id/et_conversation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/type"
+        android:background="@drawable/et_send_bg"
+        android:hint="@string/write"
         android:importantForAutofill="no"
         android:inputType="text"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="8dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/tv_hint_color"
+        android:textCursorDrawable="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btn_send"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,11 +45,8 @@
         android:layout_marginBottom="1dp"
         android:background="@null"
         android:contentDescription="@string/ask_bot"
-        android:src="@drawable/baseline_send_24"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/et_conversation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/et_conversation"
-        tools:visibility="visible" />
+        android:src="@drawable/btn_send"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
