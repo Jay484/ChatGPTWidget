@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="dark_bg">#292F3F</color>
+    <color name="gray">#7A8194</color>
+    <color name="white">#ffffff</color>
+    <color name="item_sent_bg">#272A35</color>
+    <color name="item_received_bg">#373E4E</color>
+    <color name="tv_hint_color">#99FFFFFF</color>
+    <color name="et_send_bg">#40000000</color>
+</resources>
