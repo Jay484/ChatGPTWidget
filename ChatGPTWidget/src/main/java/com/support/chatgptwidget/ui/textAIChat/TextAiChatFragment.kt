@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.core.widget.doOnTextChanged
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.support.chatgptwidget.AIChatActivity
@@ -29,7 +30,7 @@ class TextAiChatFragment : GPTFragment<FragmentTextAiChatBinding, TextAiChatView
     }
 
     override fun initViewModel(): TextAiChatViewModel {
-        return TextAiChatViewModel()
+        return ViewModelProvider(this)[TextAiChatViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
