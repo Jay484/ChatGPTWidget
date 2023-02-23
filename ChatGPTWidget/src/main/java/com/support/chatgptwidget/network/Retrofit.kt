@@ -57,10 +57,9 @@ class RetrofitObject{
         }
     }
 }
-class APIService(chatGPTApiToken: String) {
+class APIService {
     companion object{
         private var token : String? = null
-        var m_chatGPTApiService: ChatGPTApiService?=null
 
         /***
          * @param API_TOKEN Default if empty string.

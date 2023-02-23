@@ -1,8 +1,10 @@
 package com.support.chatgptwidget.network
 
+import com.support.chatgptwidget.network.models.requestmodels.ImageGenerateRequest
 import com.support.chatgptwidget.network.models.requestmodels.TextCompletionRequest
 import com.support.chatgptwidget.network.models.responsemodels.BaseResponseModel
 import com.support.chatgptwidget.network.models.responsemodels.ChatAIModel
+import com.support.chatgptwidget.network.models.responsemodels.ImageGenerateResponse
 import com.support.chatgptwidget.network.models.responsemodels.TextCompletionResponse
 import retrofit2.Response
 import retrofit2.http.Body
@@ -17,4 +19,9 @@ interface ChatGPTApiService {
     suspend fun completeText(
        @Body textCompletionRequest: TextCompletionRequest
     ): Response<TextCompletionResponse>
+
+    @POST("images/generations")
+    suspend fun generateImages(
+        @Body imageGenerateRequest: ImageGenerateRequest
+    ) : Response<ImageGenerateResponse>
 }
