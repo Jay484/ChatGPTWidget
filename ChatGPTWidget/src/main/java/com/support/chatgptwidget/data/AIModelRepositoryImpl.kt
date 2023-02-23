@@ -1,8 +1,10 @@
 package com.support.chatgptwidget.data
 
 import com.support.chatgptwidget.network.ChatGPTApiService
+import com.support.chatgptwidget.network.models.requestmodels.ImageGenerateRequest
 import com.support.chatgptwidget.network.models.requestmodels.TextCompletionRequest
 import com.support.chatgptwidget.repository.AIModelRepository
+import com.support.chatgptwidget.ui.imageAIChat.ImageAIChatEvent
 import com.support.chatgptwidget.ui.listmodels.ListModelViewEvent
 import com.support.chatgptwidget.ui.textAIChat.TextAiChatViewEvent
 import kotlinx.coroutines.flow.Flow
@@ -30,5 +32,22 @@ class AIModelRepositoryImpl(private val chatGPTApiService: ChatGPTApiService) : 
                 emit(TextAiChatViewEvent.TextCompleted(resp.body()!!.choices))
         }
         return merge(loading,data)
+    }
+
+    override fun generateImage(
+        description: String,
+        n: Int,
+        size: String
+    ) : Flow<ImageAIChatEvent> {
+        val loading = flowOf(ImageAIChatEvent.GeneratingImage)
+        val data = flow {
+            val resp = chatGPTApiService.generateImages(
+                ImageGenerateRequest(description, n, size)
+            )
+            if(resp.body() != null)
+                emit(ImageAIChatEvent.ImagesGenerated(resp.body()!!.data))
+        }
+
+        return merge(loading, data)
     }
 }
