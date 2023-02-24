@@ -5,6 +5,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.support.chatgptwidget.baseclasses.GPTFragment
 import com.support.chatgptwidget.databinding.FragmentImageAiChatBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ImageAIChatFragment : GPTFragment<FragmentImageAiChatBinding,ImageAIChatViewModel>(){
     override fun initViewBinding(
@@ -26,7 +29,18 @@ class ImageAIChatFragment : GPTFragment<FragmentImageAiChatBinding,ImageAIChatVi
     }
 
     override fun effectObservers() {
+        CoroutineScope(Dispatchers.IO).launch {
+            viewModel.viewEffect.collect {
+                when(it){
+                    ImageAIChatViewEffect.ImageAIChatInitialized -> {
 
+                    }
+                    is ImageAIChatViewEffect.LoadImage -> {
+
+                    }
+                }
+            }
+        }
     }
 
 }

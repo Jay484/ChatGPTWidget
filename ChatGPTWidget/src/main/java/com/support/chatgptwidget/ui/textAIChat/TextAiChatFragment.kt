@@ -16,6 +16,7 @@ import com.support.chatgptwidget.ui.textAIChat.recyclerview.TextAIChatRecyclerAd
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class TextAiChatFragment : GPTFragment<FragmentTextAiChatBinding, TextAiChatViewModel>() {
 
@@ -58,11 +59,13 @@ class TextAiChatFragment : GPTFragment<FragmentTextAiChatBinding, TextAiChatView
     }
 
     override fun effectObservers() {
-        CoroutineScope(Dispatchers.Main).launch {
+        CoroutineScope(Dispatchers.Default).launch {
             viewModel.viewEffect.collect {
                 when(it){
                     is TextAiChatViewEffect.LoadMessage -> {
-                        recyclerViewNewItemAdded()
+                        withContext(Dispatchers.Main) {
+                            recyclerViewNewItemAdded()
+                        }
                     }
                     TextAiChatViewEffect.ViewModelInitialized -> {
 
