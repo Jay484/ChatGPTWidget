@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class TextAiChatViewModel : ViewModel() {
-    var viewEffect: MutableStateFlow<TextAiChatViewEffect> = MutableStateFlow(ViewModelInitialized)
+    var viewEffect = MutableStateFlow<TextAiChatViewEffect>(ViewModelInitialized)
     var apiToken: String? = null
     var model = "text-davinci-003"
     val data = arrayListOf(
