@@ -1,6 +1,6 @@
 package com.support.chatgptwidget.models
 
-data class AIChatMessage(
+data class AIChatTextMessage(
     val sender: Sender,
     val text: String
 )

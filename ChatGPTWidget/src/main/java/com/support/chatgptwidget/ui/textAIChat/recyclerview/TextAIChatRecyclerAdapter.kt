@@ -5,23 +5,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.support.chatgptwidget.databinding.ItemChatReceivedBinding
-import com.support.chatgptwidget.databinding.ItemChatSentBinding
-import com.support.chatgptwidget.models.AIChatMessage
+import com.support.chatgptwidget.databinding.ItemTextChatReceivedBinding
+import com.support.chatgptwidget.databinding.ItemTextChatSentBinding
+import com.support.chatgptwidget.models.AIChatTextMessage
 
-class TextAIChatRecyclerAdapter : RecyclerView.Adapter<TextAICHatViewHolder>() {
-    var data = arrayListOf<AIChatMessage>()
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TextAICHatViewHolder {
+class TextAIChatRecyclerAdapter : RecyclerView.Adapter<TextAIChatViewHolder>() {
+    var data = arrayListOf<AIChatTextMessage>()
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TextAIChatViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return when(viewType){
             0 ->{
-                TextAICHatViewHolder.Sent(
-                    ItemChatSentBinding.inflate(layoutInflater, parent, false)
+                TextAIChatViewHolder.Sent(
+                    ItemTextChatSentBinding.inflate(layoutInflater, parent, false)
                 )
             }
             else -> {
-                TextAICHatViewHolder.Received(
-                    ItemChatReceivedBinding.inflate(layoutInflater,parent, false)
+                TextAIChatViewHolder.Received(
+                    ItemTextChatReceivedBinding.inflate(layoutInflater,parent, false)
                 )
             }
         }
@@ -29,13 +29,13 @@ class TextAIChatRecyclerAdapter : RecyclerView.Adapter<TextAICHatViewHolder>() {
 
     override fun getItemCount(): Int = data.size
 
-    override fun onBindViewHolder(holder: TextAICHatViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TextAIChatViewHolder, position: Int) {
         val aiChatMessage = data[position]
         when(holder){
-            is TextAICHatViewHolder.Received -> {
+            is TextAIChatViewHolder.Received -> {
                 holder.bind(aiChatMessage)
             }
-            is TextAICHatViewHolder.Sent -> {
+            is TextAIChatViewHolder.Sent -> {
                 holder.bind(aiChatMessage)
             }
         }
@@ -46,16 +46,16 @@ class TextAIChatRecyclerAdapter : RecyclerView.Adapter<TextAICHatViewHolder>() {
     }
 }
 
-sealed class TextAICHatViewHolder(view: View):ViewHolder(view){
-    class Sent(private val binding: ItemChatSentBinding):TextAICHatViewHolder(binding.root){
-        fun bind(aiChatMessage: AIChatMessage){
-            binding.tvSentMessage.text = aiChatMessage.text
+sealed class TextAIChatViewHolder(view: View):ViewHolder(view){
+    class Sent(private val binding: ItemTextChatSentBinding):TextAIChatViewHolder(binding.root){
+        fun bind(aiChatTextMessage: AIChatTextMessage){
+            binding.tvSentMessage.text = aiChatTextMessage.text
         }
     }
 
-    class Received(private val binding: ItemChatReceivedBinding):TextAICHatViewHolder(binding.root){
-        fun bind(aiChatMessage: AIChatMessage){
-            binding.tvReceivedMessage.text = aiChatMessage.text
+    class Received(private val binding: ItemTextChatReceivedBinding):TextAIChatViewHolder(binding.root){
+        fun bind(aiChatTextMessage: AIChatTextMessage){
+            binding.tvReceivedMessage.text = aiChatTextMessage.text
         }
     }
 }
