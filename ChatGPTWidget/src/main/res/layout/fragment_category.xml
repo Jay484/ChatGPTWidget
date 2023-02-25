@@ -1,50 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.category.CategoryFragment"
-    android:theme="@style/Theme.ChatGPTWidget.Container.Dark">
+    android:theme="@style/Theme.ChatGPTWidget.Container.Dark"
+    tools:context=".ui.category.CategoryFragment">
 
     <Button
         android:id="@+id/btn_text_completion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/item_received_bg"
+        android:paddingHorizontal="45dp"
         android:text="@string/text_completion"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/btn_code_completion"
-        android:background="@drawable/btn_stadium_bg"
-        android:paddingHorizontal="15dp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
         android:id="@+id/btn_code_completion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/item_received_bg"
+        android:paddingHorizontal="45dp"
         android:text="@string/code_completion"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_text_completion"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/btn_generate_images"
-        android:background="@drawable/btn_stadium_bg"
-        android:paddingHorizontal="15dp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_text_completion" />
 
 
     <Button
         android:id="@+id/btn_generate_images"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/item_received_bg"
+        android:paddingHorizontal="45dp"
         android:text="@string/generate_images"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_code_completion"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/btn_stadium_bg"
-        android:paddingHorizontal="15dp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_code_completion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

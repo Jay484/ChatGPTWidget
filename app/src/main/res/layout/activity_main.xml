@@ -2,27 +2,37 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Theme.ChatGPTWidget.Container.Dark"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_api"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_your_api_key"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginHorizontal="5dp"
-        />
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/edit_text_background"
+        android:hint="@string/enter_your_api_key"
+        android:padding="10dp"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/btn_open_ai_chat"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_open_ai_chat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_open_ai_chat"
-        app:layout_constraintTop_toBottomOf="@id/et_api"
-        app:layout_constraintStart_toStartOf="@id/et_api"
-        app:layout_constraintEnd_toEndOf="@id/et_api"
         android:layout_marginTop="5dp"
-        android:text="Start AI ChatBot"
-        />
+        android:background="@drawable/edit_text_background"
+        android:paddingHorizontal="10dp"
+        android:text="@string/start_ai_chatbot"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/et_api"
+        app:layout_constraintStart_toStartOf="@id/et_api"
+        app:layout_constraintTop_toBottomOf="@id/et_api" />
 </androidx.constraintlayout.widget.ConstraintLayout>

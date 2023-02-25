@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ChatGPTWrapper</string>
-    <string name="enter_your_api_key">Enter your API Key</string>
+    <string name="enter_your_api_key">Enter your API Key…</string>
+    <string name="start_ai_chatbot">Start AI ChatBot</string>
 </resources>
