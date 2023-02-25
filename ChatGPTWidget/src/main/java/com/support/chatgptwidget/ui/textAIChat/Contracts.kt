@@ -1,6 +1,6 @@
 package com.support.chatgptwidget.ui.textAIChat
 
-import com.support.chatgptwidget.models.AIChatMessage
+import com.support.chatgptwidget.models.AIChatTextMessage
 import com.support.chatgptwidget.network.models.responsemodels.Choice
 
 class TextAiChatViewState
@@ -14,5 +14,5 @@ sealed class TextAiChatViewEvent{
 
 sealed class TextAiChatViewEffect{
     object ViewModelInitialized: TextAiChatViewEffect()
-    data class LoadMessage(val message: AIChatMessage): TextAiChatViewEffect()
+    data class LoadMessage(val message: AIChatTextMessage): TextAiChatViewEffect()
 }

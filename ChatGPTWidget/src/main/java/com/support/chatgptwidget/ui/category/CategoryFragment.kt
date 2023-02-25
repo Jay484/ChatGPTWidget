@@ -21,15 +21,16 @@ class CategoryFragment : Fragment() {
     }
     private fun initOnclickListeners(){
         binding.btnTextCompletion.setOnClickListener {
-            val action = CategoryFragmentDirections
+            val direction = CategoryFragmentDirections
                 .actionCategoryFragmentToTextAiChatFragment(text_davinci_003_model)
-            findNavController().navigate(action)
+            findNavController().navigate(direction)
         }
         binding.btnCodeCompletion.setOnClickListener {
 
         }
         binding.btnGenerateImages.setOnClickListener {
-
+            val direction = CategoryFragmentDirections.actionCategoryFragmentToImageAIChatFragment()
+            findNavController().navigate(direction)
         }
     }
 

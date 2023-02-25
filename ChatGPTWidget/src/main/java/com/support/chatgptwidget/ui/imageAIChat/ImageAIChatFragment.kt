@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.support.chatgptwidget.baseclasses.GPTFragment
 import com.support.chatgptwidget.databinding.FragmentImageAiChatBinding
+import com.support.chatgptwidget.ui.imageAIChat.recyclerview.ImageAIChatRecyclerAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,10 +23,13 @@ class ImageAIChatFragment : GPTFragment<FragmentImageAiChatBinding,ImageAIChatVi
     }
 
     override fun initViews() {
+        binding.rvChats.adapter = ImageAIChatRecyclerAdapter()
     }
 
     override fun initListeners() {
-
+        binding.btnSend.setOnClickListener {
+            sendMessage(binding.etConversation.text.toString())
+        }
     }
 
     override fun effectObservers() {
@@ -41,6 +45,10 @@ class ImageAIChatFragment : GPTFragment<FragmentImageAiChatBinding,ImageAIChatVi
                 }
             }
         }
+    }
+
+    private fun sendMessage(message: String){
+
     }
 
 }

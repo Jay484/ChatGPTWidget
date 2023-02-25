@@ -35,5 +35,19 @@
             app:destination="@id/textAiChatFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_categoryFragment_to_imageAIChatFragment"
+            app:destination="@id/imageAIChatFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageAIChatFragment"
+        android:name="com.support.chatgptwidget.ui.imageAIChat.ImageAIChatFragment"
+        android:label="fragment_image_ai_chat"
+        tools:layout="@layout/fragment_image_ai_chat" >
+        <action
+            android:id="@+id/action_imageAIChatFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
     </fragment>
 </navigation>
