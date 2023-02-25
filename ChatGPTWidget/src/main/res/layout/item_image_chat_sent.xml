@@ -34,7 +34,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@raw/image_raw"
-        tools:visibility="visible" />
+        tools:visibility="visible"
+        android:background="@color/item_sent_bg" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_sent_message"
@@ -46,7 +47,8 @@
         android:textIsSelectable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_sent"
-        tools:text="Sent message" />
+        tools:text="Sent message"
+        android:background="@color/item_sent_bg" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/br_tv_iv_sent"
