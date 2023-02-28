@@ -1,4 +1,4 @@
-package com.support.chatgptwidget.network.models.responsemodels
+package com.support.chatgptwidget.data.network.models.responsemodels
 
 data class TextCompletionResponse(
     val id: String,

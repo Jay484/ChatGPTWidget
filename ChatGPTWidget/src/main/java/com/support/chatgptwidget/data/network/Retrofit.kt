@@ -1,4 +1,4 @@
-package com.support.chatgptwidget.network
+package com.support.chatgptwidget.data.network
 
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -67,13 +67,12 @@ class APIService {
          * used for api calls.
          * Pass null if you want to remove auth header for further calls.
          */
-        fun getChatGPTApiService(API_TOKEN: String? = "") : ChatGPTApiService{
+        fun getChatGPTApiService(API_TOKEN: String? = "") : ChatGPTApiService {
             if(API_TOKEN != ""){
                 token = API_TOKEN
             }
 
-            return RetrofitObject
-                .getAIChatRetrofitInstance(API_TOKEN)
+            return RetrofitObject.getAIChatRetrofitInstance(API_TOKEN)
                 .create(ChatGPTApiService::class.java)
         }
 

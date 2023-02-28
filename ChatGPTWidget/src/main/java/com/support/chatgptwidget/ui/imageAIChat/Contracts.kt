@@ -1,6 +1,6 @@
 package com.support.chatgptwidget.ui.imageAIChat
 
-import com.support.chatgptwidget.network.models.responsemodels.ImageResponse
+import com.support.chatgptwidget.data.network.models.responsemodels.ImageResponse
 
 sealed class ImageAIChatEvent{
     object GeneratingImage : ImageAIChatEvent()

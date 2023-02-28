@@ -1,4 +1,4 @@
-package com.support.chatgptwidget.network.models.requestmodels
+package com.support.chatgptwidget.data.network.models.requestmodels
 
 data class ImageGenerateRequest (
     val prompt: String,

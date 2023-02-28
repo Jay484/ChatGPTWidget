@@ -1,9 +1,8 @@
 package com.support.chatgptwidget.ui.listmodels
 
 import androidx.lifecycle.ViewModel
-import com.support.chatgptwidget.data.AIModelRepositoryImpl
-import com.support.chatgptwidget.network.APIService
-import com.support.chatgptwidget.network.ChatGPTApiService
+import com.support.chatgptwidget.data.AIChatRepositoryImpl
+import com.support.chatgptwidget.data.network.APIService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -17,7 +16,7 @@ class ListModelsViewModel : ViewModel() {
     var apiToken: String? = null
     fun getChatAIModelList(){
         CoroutineScope(Dispatchers.IO).launch {
-            AIModelRepositoryImpl(
+            AIChatRepositoryImpl(
                 APIService.getChatGPTApiService(apiToken)
             ).getAIModels().collectLatest {
                 processEvent(it)

@@ -1,9 +1,9 @@
 package com.support.chatgptwidget.data
 
-import com.support.chatgptwidget.network.ChatGPTApiService
-import com.support.chatgptwidget.network.models.requestmodels.ImageGenerateRequest
-import com.support.chatgptwidget.network.models.requestmodels.TextCompletionRequest
-import com.support.chatgptwidget.repository.AIModelRepository
+import com.support.chatgptwidget.data.network.ChatGPTApiService
+import com.support.chatgptwidget.data.network.models.requestmodels.ImageGenerateRequest
+import com.support.chatgptwidget.data.network.models.requestmodels.TextCompletionRequest
+import com.support.chatgptwidget.repository.AIChatRepository
 import com.support.chatgptwidget.ui.imageAIChat.ImageAIChatEvent
 import com.support.chatgptwidget.ui.listmodels.ListModelViewEvent
 import com.support.chatgptwidget.ui.textAIChat.TextAiChatViewEvent
@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.merge
 
-class AIModelRepositoryImpl(private val chatGPTApiService: ChatGPTApiService) : AIModelRepository {
+class AIChatRepositoryImpl(private val chatGPTApiService: ChatGPTApiService) : AIChatRepository {
     override fun getAIModels(): Flow<ListModelViewEvent> {
         val loading = flowOf(ListModelViewEvent.LoadingModels)
         val data = flow {
