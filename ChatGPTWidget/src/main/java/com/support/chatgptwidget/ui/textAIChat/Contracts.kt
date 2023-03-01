@@ -1,7 +1,7 @@
 package com.support.chatgptwidget.ui.textAIChat
 
 import com.support.chatgptwidget.models.AIChatTextMessage
-import com.support.chatgptwidget.network.models.responsemodels.Choice
+import com.support.chatgptwidget.data.network.models.responsemodels.Choice
 
 class TextAiChatViewState
 

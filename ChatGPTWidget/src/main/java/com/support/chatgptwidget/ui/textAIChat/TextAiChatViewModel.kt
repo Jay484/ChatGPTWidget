@@ -1,11 +1,11 @@
 package com.support.chatgptwidget.ui.textAIChat
 
 import androidx.lifecycle.ViewModel
-import com.support.chatgptwidget.data.AIModelRepositoryImpl
+import com.support.chatgptwidget.data.AIChatRepositoryImpl
 import com.support.chatgptwidget.models.AIChatTextMessage
 import com.support.chatgptwidget.models.Sender
-import com.support.chatgptwidget.network.APIService
-import com.support.chatgptwidget.network.models.requestmodels.TextCompletionRequest
+import com.support.chatgptwidget.data.network.APIService
+import com.support.chatgptwidget.data.network.models.requestmodels.TextCompletionRequest
 import com.support.chatgptwidget.ui.textAIChat.TextAiChatViewEffect.ViewModelInitialized
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -23,13 +23,15 @@ class TextAiChatViewModel : ViewModel() {
     fun completeText(text: String){
         data.add(AIChatTextMessage(Sender.Me,text))
         CoroutineScope(Dispatchers.IO).launch {
-            AIModelRepositoryImpl(
+            AIChatRepositoryImpl(
                 APIService.getChatGPTApiService(apiToken)
-            ).completeText(TextCompletionRequest(
+            ).completeText(
+                TextCompletionRequest(
                 model,
                 text,
                 1024
-            )).collectLatest {
+            )
+            ).collectLatest {
                 processEvent(it)
             }
         }

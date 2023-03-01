@@ -1,11 +1,10 @@
 package com.support.chatgptwidget.ui.imageAIChat
 
 import androidx.lifecycle.ViewModel
-import com.support.chatgptwidget.data.AIModelRepositoryImpl
+import com.support.chatgptwidget.data.AIChatRepositoryImpl
 import com.support.chatgptwidget.models.AIChatImageMessage
-import com.support.chatgptwidget.models.AIChatTextMessage
 import com.support.chatgptwidget.models.Sender
-import com.support.chatgptwidget.network.APIService
+import com.support.chatgptwidget.data.network.APIService
 import com.support.chatgptwidget.ui.imageAIChat.ImageAIChatViewEffect.ImageAIChatInitialized
 import com.support.chatgptwidget.ui.imageAIChat.ImageAIChatViewEffect.LoadImage
 import kotlinx.coroutines.CoroutineScope
@@ -22,7 +21,7 @@ class ImageAIChatViewModel : ViewModel() {
     fun getImages(description: String){
         data.add(AIChatImageMessage(Sender.Me, null, description))
         CoroutineScope(Dispatchers.IO).launch {
-            AIModelRepositoryImpl(
+            AIChatRepositoryImpl(
                 APIService.getChatGPTApiService(apiToken)
             ).generateImage(
                 description

@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.support.chatgptwidget.AIChatActivity
 import com.support.chatgptwidget.databinding.FragmentListModelsBinding
-import com.support.chatgptwidget.network.models.responsemodels.ChatAIModel
+import com.support.chatgptwidget.data.network.models.responsemodels.ChatAIModel
 import com.support.chatgptwidget.ui.listmodels.listeners.ModelItemListeners
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
